@@ -10,7 +10,7 @@ public class SessionServiceImpl implements SessionService {
 		
 		UIComponentsImpl uiComponents = new UIComponentsImpl();
 		uiComponents.renderStartWindow();
-		System.out.println("After");
+		System.out.println("Started New Session");
 	}
 
 }

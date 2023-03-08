@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.screenshotToDocument.Activity.impl.PerformActionImpl;
 import com.screenshotToDocument.GUI.BaseFrame;
 import com.screenshotToDocument.GUI.UIComponents;
 
@@ -20,6 +21,9 @@ public class UIComponentsImpl implements UIComponents{
 	private static String NEW_SESSION_TITLE = "Start";
 	private static String NEW_SCREENSHOT_WINDOW_TITLE = "CS";
 	private static String NEW_SAVE_WINDOW_TITLE = "Save Doc";
+	
+	PerformActionImpl performActionImpl = new PerformActionImpl();
+	JLabel screenShotIndexLable = new JLabel();
 	
 	private ActionListener startScreenShotProcess(final JFrame frame) {
 		
@@ -75,6 +79,21 @@ public class UIComponentsImpl implements UIComponents{
 
 	}
 	
+	private ActionListener initiateScreenShot(final JFrame frame) {
+
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				performActionImpl.createScreenShot();
+				String index = performActionImpl.getScreenShotIndex();
+				screenShotIndexLable.setText(" " + index + " ");
+				
+			}
+
+		};
+
+	}
 	
 	@Override
 	public void renderStartWindow() {
@@ -95,17 +114,17 @@ public class UIComponentsImpl implements UIComponents{
 
 	@Override
 	public void renderScreenShotWindow() {
-		BaseFrame baseFrame = new BaseFrame(75, 200);
+		BaseFrame baseFrame = new BaseFrame(70, 200);
 		JFrame frame = baseFrame.createFrame(NEW_SCREENSHOT_WINDOW_TITLE);
 		
 		JButton captureSSButton = new JButton();
 		captureSSButton.setText("SS");
 		captureSSButton.setBounds(0, 10, 20, 10);
+		captureSSButton.addActionListener(initiateScreenShot(frame));
 		
-		JLabel screenShotIndexLable = new JLabel();
-		screenShotIndexLable.setText("10");
+		screenShotIndexLable.setText(" " + performActionImpl.getScreenShotIndex() + " ");
 		screenShotIndexLable.setBounds(0, 35, 20, 10);
-		screenShotIndexLable.setFont(new Font("Serif", Font.BOLD, 16));
+		screenShotIndexLable.setFont(new Font("Serif", Font.BOLD, 20));
 		
 		JButton endSSSession = new JButton();
 		endSSSession.setText("End");
