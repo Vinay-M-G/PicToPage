@@ -1,10 +1,12 @@
 package com.screenshotToDocument;
 
+import com.screenshotToDocument.Session.impl.SessionServiceImpl;
 
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+    	SessionServiceImpl sessionService = new SessionServiceImpl();
+    	sessionService.startSession();
     }
 }

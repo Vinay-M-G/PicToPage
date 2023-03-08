@@ -2,10 +2,10 @@ package com.screenshotToDocument.GUI;
 
 public interface UIComponents {
 	
-	public boolean renderStartWindow();
+	public void renderStartWindow();
 	
-	public boolean renderScreenShotWindow();
+	public void renderScreenShotWindow();
 	
-	public boolean renderSaveWindow();
+	public void renderSaveWindow();
 	
 }
