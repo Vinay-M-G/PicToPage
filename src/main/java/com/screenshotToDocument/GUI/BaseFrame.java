@@ -1,7 +1,5 @@
 package com.screenshotToDocument.GUI;
 
-import java.awt.Rectangle;
-
 import javax.swing.JFrame;
 
 public class BaseFrame {
@@ -22,6 +20,7 @@ public class BaseFrame {
 		frame.setBounds(positionX, positionY, width, height);
 		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
+		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 		return frame;
 		

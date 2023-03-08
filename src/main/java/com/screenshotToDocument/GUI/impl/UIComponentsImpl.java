@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import com.screenshotToDocument.GUI.BaseFrame;
 import com.screenshotToDocument.GUI.UIComponents;
@@ -18,6 +19,7 @@ public class UIComponentsImpl implements UIComponents{
 	private static String START_SESSION = "Start Session";
 	private static String NEW_SESSION_TITLE = "Start";
 	private static String NEW_SCREENSHOT_WINDOW_TITLE = "CS";
+	private static String NEW_SAVE_WINDOW_TITLE = "Save Doc";
 	
 	private ActionListener startScreenShotProcess(final JFrame frame) {
 		
@@ -31,6 +33,46 @@ public class UIComponentsImpl implements UIComponents{
 			
 		};
 		
+	}
+	
+	private ActionListener endScreenShotProcess(final JFrame frame) {
+
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				UIComponentsImpl uiComponentsImpl = new UIComponentsImpl();
+				uiComponentsImpl.renderSaveWindow();
+			}
+
+		};
+
+	}
+	
+	private ActionListener endSession(final JFrame frame) {
+
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+
+		};
+
+	}
+	
+	private ActionListener continueSession(final JFrame frame) {
+
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				UIComponentsImpl uiComponentsImpl = new UIComponentsImpl();
+				uiComponentsImpl.renderStartWindow();
+			}
+
+		};
+
 	}
 	
 	
@@ -49,7 +91,6 @@ public class UIComponentsImpl implements UIComponents{
 		panel.add(startSessionButton);
 		frame.add(panel);
 		frame.setVisible(true);
-
 	}
 
 	@Override
@@ -65,9 +106,11 @@ public class UIComponentsImpl implements UIComponents{
 		screenShotIndexLable.setText("10");
 		screenShotIndexLable.setBounds(0, 35, 20, 10);
 		screenShotIndexLable.setFont(new Font("Serif", Font.BOLD, 16));
+		
 		JButton endSSSession = new JButton();
 		endSSSession.setText("End");
 		endSSSession.setBounds(0, 60, 20, 10);
+		endSSSession.addActionListener(endScreenShotProcess(frame));
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout());
@@ -78,12 +121,37 @@ public class UIComponentsImpl implements UIComponents{
 		
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.setVisible(true);
 	}
 
 	@Override
 	public void renderSaveWindow() {
-		// TODO Auto-generated method stub
+		BaseFrame baseFrame = new BaseFrame(150, 400);
+		JFrame frame = baseFrame.createFrame(NEW_SAVE_WINDOW_TITLE);
+		
+		JLabel documentName = new JLabel();
+		documentName.setText("Document Name : ");
+		documentName.setFont(new Font("Serif", Font.BOLD, 16));
+		
+		JTextField fileName = new JTextField("" , 30);
+		
+		JButton saveAndContinue = new JButton();
+		saveAndContinue.addActionListener(continueSession(frame));
+		saveAndContinue.setText("Save and Continue");
+		
+		JButton saveAndExit = new JButton();
+		saveAndExit.addActionListener(endSession(frame));
+		saveAndExit.setText("Save and Exit");
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new FlowLayout());
+		
+		panel.add(documentName);
+		panel.add(fileName);
+		panel.add(saveAndContinue);
+		panel.add(saveAndExit);
+		
+		frame.add(panel);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}
 
 }
