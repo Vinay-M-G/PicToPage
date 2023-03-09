@@ -24,7 +24,7 @@ public class PerformActionImpl implements PerformAction{
 	@Override
 	public void createScreenShot() { 
 		ScreenShotHandler screenShotHandler = new ScreenShotHandler();
-		boolean status = screenShotHandler.takeScreenShot();
+		boolean status = screenShotHandler.takeScreenShot(screenShotIndex);
 		
 		if(status) {
 			setScreenShotIndex(screenShotIndex);
