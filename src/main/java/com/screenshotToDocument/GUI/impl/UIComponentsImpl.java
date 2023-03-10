@@ -24,6 +24,7 @@ public class UIComponentsImpl implements UIComponents{
 	
 	PerformActionImpl performActionImpl = new PerformActionImpl();
 	JLabel screenShotIndexLable = new JLabel();
+	JTextField fileName = new JTextField("" , 30);
 	
 	private ActionListener startScreenShotProcess(final JFrame frame) {
 		
@@ -58,7 +59,17 @@ public class UIComponentsImpl implements UIComponents{
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				String documentName = fileName.getText();
+				
+				if(documentName.length() > 0 && documentName != null) {
+					performActionImpl.saveDocument(documentName);
+					frame.dispose();
+					
+				}else {
+					
+				}
+				
+				
 			}
 
 		};
@@ -70,9 +81,18 @@ public class UIComponentsImpl implements UIComponents{
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				UIComponentsImpl uiComponentsImpl = new UIComponentsImpl();
-				uiComponentsImpl.renderStartWindow();
+				
+				String documentName = fileName.getText();
+				
+				if(documentName.length() > 0 && documentName != null) {
+					performActionImpl.saveDocument(fileName.getText());
+					frame.dispose();
+					UIComponentsImpl uiComponentsImpl = new UIComponentsImpl();
+					uiComponentsImpl.renderStartWindow();
+				}else {
+					
+				}
+				
 			}
 
 		};
@@ -150,8 +170,6 @@ public class UIComponentsImpl implements UIComponents{
 		JLabel documentName = new JLabel();
 		documentName.setText("Document Name : ");
 		documentName.setFont(new Font("Serif", Font.BOLD, 16));
-		
-		JTextField fileName = new JTextField("" , 30);
 		
 		JButton saveAndContinue = new JButton();
 		saveAndContinue.addActionListener(continueSession(frame));

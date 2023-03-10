@@ -1,7 +1,10 @@
 package com.screenshotToDocument.Activity.impl;
 
+import java.io.FileNotFoundException;
+
 import com.screenshotToDocument.Activity.PerformAction;
 import com.screenshotToDocument.Components.impl.ScreenShotHandler;
+import com.screenshotToDocument.Components.impl.WordDoumentWriter;
 
 public class PerformActionImpl implements PerformAction{
 	
@@ -16,9 +19,15 @@ public class PerformActionImpl implements PerformAction{
 	}
 	
 	@Override
-	public void saveDocument() {
-		// TODO Auto-generated method stub
-		
+	public void saveDocument(String fileName) {
+		try {
+			WordDoumentWriter wordDocumentWriter = new WordDoumentWriter(fileName);
+			wordDocumentWriter.writeImagesFromFolder();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
