@@ -12,9 +12,14 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import com.screenshotToDocument.Components.DocumentWriter;
 
 public class WordDoumentWriter implements DocumentWriter{
+	
+	private static Logger logger = LogManager.getLogger(WordDoumentWriter.class);
 	
 	private static final int imageType = XWPFDocument.PICTURE_TYPE_PNG;
 	private static final int imageWidth = 450;
@@ -33,6 +38,8 @@ public class WordDoumentWriter implements DocumentWriter{
 		 
 		 this.document = document;
 		 this.outputWordFile = outputWordFile;
+		 
+		 logger.info("Created an instance of the word document");
 	}
 	
 	@Override
@@ -42,11 +49,11 @@ public class WordDoumentWriter implements DocumentWriter{
 		
 		imagePathList.stream().forEach( element -> {
 			
-			System.out.println(element);
 			File image = new File(element);
 			
 			try {
 				
+				logger.info("Writing image from : " + element);
 				XWPFParagraph paragraph = document.createParagraph();
 				XWPFRun paragraphRun = paragraph.createRun();
 				FileInputStream imageData = new FileInputStream(image);
@@ -57,6 +64,7 @@ public class WordDoumentWriter implements DocumentWriter{
 				
 			} catch (Exception e) {
 				
+				logger.debug("Exception while writing image from : " + element);
 				e.printStackTrace();
 			}
 		});
@@ -66,6 +74,7 @@ public class WordDoumentWriter implements DocumentWriter{
 			
 			outputWordFile.close();
 			document.close();
+			logger.info("Word File Saved Successfully");
 			
 		} catch (Exception e) {
 			
@@ -82,7 +91,7 @@ public class WordDoumentWriter implements DocumentWriter{
 		
 		File imageFolder = new File(imageFolderPath);
 		for(String element : imageFolder.list()) {
-			System.out.println(element);
+
 			imageAbsolutePaths.add(imageFolderPath + element);
 		}
 		

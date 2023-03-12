@@ -1,12 +1,15 @@
 package com.screenshotToDocument.Activity.impl;
 
-import java.io.FileNotFoundException;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.screenshotToDocument.Activity.PerformAction;
 import com.screenshotToDocument.Components.impl.ScreenShotHandler;
 import com.screenshotToDocument.Components.impl.WordDoumentWriter;
 
 public class PerformActionImpl implements PerformAction{
+	
+	private static Logger logger = LogManager.getLogger(PerformActionImpl.class);
 	
 	private int screenShotIndex = 0;
 	
@@ -25,7 +28,7 @@ public class PerformActionImpl implements PerformAction{
 			wordDocumentWriter.writeImagesFromFolder();
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -36,8 +39,8 @@ public class PerformActionImpl implements PerformAction{
 		boolean status = screenShotHandler.takeScreenShot(screenShotIndex);
 		
 		if(status) {
-			setScreenShotIndex(screenShotIndex);
-	
+			logger.info("ScreenShot with index : " + screenShotIndex + " saved successfully");
+			setScreenShotIndex(screenShotIndex);	
 		}
 	}
 

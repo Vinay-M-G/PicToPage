@@ -11,11 +11,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import com.screenshotToDocument.Activity.impl.PerformActionImpl;
 import com.screenshotToDocument.GUI.BaseFrame;
 import com.screenshotToDocument.GUI.UIComponents;
 
 public class UIComponentsImpl implements UIComponents{
+	
+	private static Logger logger = LogManager.getLogger(UIComponentsImpl.class);
 	
 	private static String START_SESSION = "Start Session";
 	private static String NEW_SESSION_TITLE = "Start";
@@ -67,6 +72,7 @@ public class UIComponentsImpl implements UIComponents{
 					
 				}else {
 					
+					logger.warn("File Name not provided !!!");
 				}
 				
 				
@@ -91,6 +97,7 @@ public class UIComponentsImpl implements UIComponents{
 					uiComponentsImpl.renderStartWindow();
 				}else {
 					
+					logger.warn("File Name not provided !!!");
 				}
 				
 			}
@@ -130,6 +137,8 @@ public class UIComponentsImpl implements UIComponents{
 		panel.add(startSessionButton);
 		frame.add(panel);
 		frame.setVisible(true);
+		
+		logger.info("Rendered Start Window");
 	}
 
 	@Override
@@ -160,6 +169,8 @@ public class UIComponentsImpl implements UIComponents{
 		
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		logger.info("Rendered ScreenShot Window");
 	}
 
 	@Override
@@ -189,6 +200,8 @@ public class UIComponentsImpl implements UIComponents{
 		
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		logger.info("Rendered Save Window");
 	}
 
 }
