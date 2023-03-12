@@ -61,6 +61,7 @@ public class WordDoumentWriter implements DocumentWriter{
 				paragraphRun.addPicture(imageData, imageType, image.getName(), Units.toEMU(imageWidth), Units.toEMU(imageHeight));
 				
 				document.write(outputWordFile);
+				imageData.close();
 				
 			} catch (Exception e) {
 				

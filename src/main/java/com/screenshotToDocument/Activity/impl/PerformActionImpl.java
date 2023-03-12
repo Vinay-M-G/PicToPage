@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 
 import com.screenshotToDocument.Activity.PerformAction;
 import com.screenshotToDocument.Components.impl.ScreenShotHandler;
+import com.screenshotToDocument.Components.impl.Utilities;
 import com.screenshotToDocument.Components.impl.WordDoumentWriter;
 
 public class PerformActionImpl implements PerformAction{
@@ -26,6 +27,9 @@ public class PerformActionImpl implements PerformAction{
 		try {
 			WordDoumentWriter wordDocumentWriter = new WordDoumentWriter(fileName);
 			wordDocumentWriter.writeImagesFromFolder();
+			
+			Utilities utility = new Utilities();
+			utility.performTempFolderCleanUp();
 			
 		} catch (Exception e) {
 			
