@@ -8,14 +8,14 @@ import com.screenshotToDocument.Session.SessionService;
 
 public class SessionServiceImpl implements SessionService {
 	
-	private static Logger logger = LogManager.getLogger(SessionServiceImpl.class);
+	private static Logger LOGGER = LogManager.getLogger(SessionServiceImpl.class);
 	
 	@Override
 	public void startSession() {
 		
 		UIComponentsImpl uiComponents = new UIComponentsImpl();
 		uiComponents.renderStartWindow();
-		logger.info("Session Started Successfully");
+		LOGGER.info("Session Started Successfully");
 	}
 
 }

@@ -20,7 +20,7 @@ import com.screenshotToDocument.GUI.UIComponents;
 
 public class UIComponentsImpl implements UIComponents{
 	
-	private static Logger logger = LogManager.getLogger(UIComponentsImpl.class);
+	private static Logger LOGGER = LogManager.getLogger(UIComponentsImpl.class);
 	
 	private static String START_SESSION = "Start Session";
 	private static String NEW_SESSION_TITLE = "Start";
@@ -72,7 +72,7 @@ public class UIComponentsImpl implements UIComponents{
 					
 				}else {
 					
-					logger.warn("File Name not provided !!!");
+					LOGGER.warn("File Name not provided !!!");
 				}
 				
 				
@@ -97,7 +97,7 @@ public class UIComponentsImpl implements UIComponents{
 					uiComponentsImpl.renderStartWindow();
 				}else {
 					
-					logger.warn("File Name not provided !!!");
+					LOGGER.warn("File Name not provided !!!");
 				}
 				
 			}
@@ -138,7 +138,7 @@ public class UIComponentsImpl implements UIComponents{
 		frame.add(panel);
 		frame.setVisible(true);
 		
-		logger.info("Rendered Start Window");
+		LOGGER.info("Rendered Start Window");
 	}
 
 	@Override
@@ -170,7 +170,7 @@ public class UIComponentsImpl implements UIComponents{
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
-		logger.info("Rendered ScreenShot Window");
+		LOGGER.info("Rendered ScreenShot Window");
 	}
 
 	@Override
@@ -201,7 +201,7 @@ public class UIComponentsImpl implements UIComponents{
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
-		logger.info("Rendered Save Window");
+		LOGGER.info("Rendered Save Window");
 	}
 
 }

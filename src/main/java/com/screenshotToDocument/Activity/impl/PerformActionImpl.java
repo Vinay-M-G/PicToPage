@@ -10,7 +10,7 @@ import com.screenshotToDocument.Components.impl.WordDoumentWriter;
 
 public class PerformActionImpl implements PerformAction{
 	
-	private static Logger logger = LogManager.getLogger(PerformActionImpl.class);
+	private static Logger LOGGER = LogManager.getLogger(PerformActionImpl.class);
 	
 	private int screenShotIndex = 0;
 	
@@ -43,7 +43,7 @@ public class PerformActionImpl implements PerformAction{
 		boolean status = screenShotHandler.takeScreenShot(screenShotIndex);
 		
 		if(status) {
-			logger.info("ScreenShot with index : " + screenShotIndex + " saved successfully");
+			LOGGER.info("ScreenShot with index : " + screenShotIndex + " saved successfully");
 			setScreenShotIndex(screenShotIndex);	
 		}
 	}

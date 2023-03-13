@@ -19,11 +19,11 @@ import com.screenshotToDocument.Components.DocumentWriter;
 
 public class WordDoumentWriter implements DocumentWriter{
 	
-	private static Logger logger = LogManager.getLogger(WordDoumentWriter.class);
+	private static Logger LOGGER = LogManager.getLogger(WordDoumentWriter.class);
 	
-	private static final int imageType = XWPFDocument.PICTURE_TYPE_PNG;
-	private static final int imageWidth = 450;
-	private static final int imageHeight = 345;
+	private static final int IMAGE_TYPE = XWPFDocument.PICTURE_TYPE_PNG;
+	private static final int IMAGE_WIDTH = 480;
+	private static final int IMAGE_HEIGHT = 250;
 	
 	private XWPFDocument document;
 	private FileOutputStream outputWordFile; 
@@ -38,8 +38,8 @@ public class WordDoumentWriter implements DocumentWriter{
 		 
 		 this.document = document;
 		 this.outputWordFile = outputWordFile;
-		 
-		 logger.info("Created an instance of the word document");
+
+		 LOGGER.info("Created an instance of the word document");
 	}
 	
 	@Override
@@ -53,32 +53,33 @@ public class WordDoumentWriter implements DocumentWriter{
 			
 			try {
 				
-				logger.info("Writing image from : " + element);
+				LOGGER.info("Writing image from : " + element);
 				XWPFParagraph paragraph = document.createParagraph();
 				XWPFRun paragraphRun = paragraph.createRun();
 				FileInputStream imageData = new FileInputStream(image);
+
+				paragraphRun.addBreak();
+				paragraphRun.addPicture(imageData, IMAGE_TYPE, image.getName(), Units.toEMU(IMAGE_WIDTH), Units.toEMU(IMAGE_HEIGHT));
 				
-				paragraphRun.addPicture(imageData, imageType, image.getName(), Units.toEMU(imageWidth), Units.toEMU(imageHeight));
-				
-				document.write(outputWordFile);
 				imageData.close();
 				
 			} catch (Exception e) {
 				
-				logger.debug("Exception while writing image from : " + element);
+				LOGGER.debug("Exception while writing image from : " + element);
 				e.printStackTrace();
 			}
 		});
 		
 		
 		try {
-			
+			document.write(outputWordFile);
 			outputWordFile.close();
 			document.close();
-			logger.info("Word File Saved Successfully");
+			LOGGER.info("Word File Saved Successfully");
 			
 		} catch (Exception e) {
 			
+			LOGGER.error("An Error Occured while saving word Document");
 			e.printStackTrace();
 		}
 		

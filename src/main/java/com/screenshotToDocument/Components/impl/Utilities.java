@@ -7,13 +7,15 @@ import org.apache.logging.log4j.LogManager;
 import java.io.File;
 import java.io.IOException;
 
+import java.awt.Toolkit;
+
 public class Utilities {
 	
-	private static Logger logger = LogManager.getLogger(Utilities.class);
+	private static Logger LOGGER = LogManager.getLogger(Utilities.class);
 	
-	private static final String tempFilePath = "E://TempFolder//";
+	private static final String tempFilePath = "C://Temp execution//TempImage//";
 	private static final String imageFormat = "png";
-	private static final String resultsFolder = "E://Results//";
+	private static final String resultsFolder = "C://Temp execution//";
 	
 	public String getFolderPath() {
 		return tempFilePath;
@@ -32,10 +34,10 @@ public class Utilities {
 	      try {
 	    	File directory = new File(tempFilePath);
 			FileUtils.cleanDirectory(directory);
-			logger.info("Temp Image Directory Cleaned Succssfully");
+			LOGGER.info("Temp Image Directory Cleaned Succssfully");
 		} catch (IOException e) {
 			
-			logger.error("An Error occured while cleaning Temp Images");
+			LOGGER.error("An Error occured while cleaning Temp Images");
 			e.printStackTrace();
 		}
 	}
