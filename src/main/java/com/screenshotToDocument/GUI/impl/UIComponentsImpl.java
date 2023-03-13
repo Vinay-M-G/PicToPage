@@ -11,11 +11,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import com.screenshotToDocument.Activity.impl.PerformActionImpl;
 import com.screenshotToDocument.GUI.BaseFrame;
 import com.screenshotToDocument.GUI.UIComponents;
 
 public class UIComponentsImpl implements UIComponents{
+	
+	private static Logger LOGGER = LogManager.getLogger(UIComponentsImpl.class);
 	
 	private static String START_SESSION = "Start Session";
 	private static String NEW_SESSION_TITLE = "Start";
@@ -24,6 +29,7 @@ public class UIComponentsImpl implements UIComponents{
 	
 	PerformActionImpl performActionImpl = new PerformActionImpl();
 	JLabel screenShotIndexLable = new JLabel();
+	JTextField fileName = new JTextField("" , 30);
 	
 	private ActionListener startScreenShotProcess(final JFrame frame) {
 		
@@ -58,7 +64,18 @@ public class UIComponentsImpl implements UIComponents{
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				String documentName = fileName.getText();
+				
+				if(documentName.length() > 0 && documentName != null) {
+					performActionImpl.saveDocument(documentName);
+					frame.dispose();
+					
+				}else {
+					
+					LOGGER.warn("File Name not provided !!!");
+				}
+				
+				
 			}
 
 		};
@@ -70,9 +87,19 @@ public class UIComponentsImpl implements UIComponents{
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				UIComponentsImpl uiComponentsImpl = new UIComponentsImpl();
-				uiComponentsImpl.renderStartWindow();
+				
+				String documentName = fileName.getText();
+				
+				if(documentName.length() > 0 && documentName != null) {
+					performActionImpl.saveDocument(fileName.getText());
+					frame.dispose();
+					UIComponentsImpl uiComponentsImpl = new UIComponentsImpl();
+					uiComponentsImpl.renderStartWindow();
+				}else {
+					
+					LOGGER.warn("File Name not provided !!!");
+				}
+				
 			}
 
 		};
@@ -110,6 +137,8 @@ public class UIComponentsImpl implements UIComponents{
 		panel.add(startSessionButton);
 		frame.add(panel);
 		frame.setVisible(true);
+		
+		LOGGER.info("Rendered Start Window");
 	}
 
 	@Override
@@ -140,6 +169,8 @@ public class UIComponentsImpl implements UIComponents{
 		
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		LOGGER.info("Rendered ScreenShot Window");
 	}
 
 	@Override
@@ -150,8 +181,6 @@ public class UIComponentsImpl implements UIComponents{
 		JLabel documentName = new JLabel();
 		documentName.setText("Document Name : ");
 		documentName.setFont(new Font("Serif", Font.BOLD, 16));
-		
-		JTextField fileName = new JTextField("" , 30);
 		
 		JButton saveAndContinue = new JButton();
 		saveAndContinue.addActionListener(continueSession(frame));
@@ -171,6 +200,8 @@ public class UIComponentsImpl implements UIComponents{
 		
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		LOGGER.info("Rendered Save Window");
 	}
 
 }

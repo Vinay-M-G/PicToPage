@@ -1,9 +1,16 @@
 package com.screenshotToDocument.Activity.impl;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import com.screenshotToDocument.Activity.PerformAction;
 import com.screenshotToDocument.Components.impl.ScreenShotHandler;
+import com.screenshotToDocument.Components.impl.Utilities;
+import com.screenshotToDocument.Components.impl.WordDoumentWriter;
 
 public class PerformActionImpl implements PerformAction{
+	
+	private static Logger LOGGER = LogManager.getLogger(PerformActionImpl.class);
 	
 	private int screenShotIndex = 0;
 	
@@ -16,19 +23,28 @@ public class PerformActionImpl implements PerformAction{
 	}
 	
 	@Override
-	public void saveDocument() {
-		// TODO Auto-generated method stub
-		
+	public void saveDocument(String fileName) {
+		try {
+			WordDoumentWriter wordDocumentWriter = new WordDoumentWriter(fileName);
+			wordDocumentWriter.writeImagesFromFolder();
+			
+			Utilities utility = new Utilities();
+			utility.performTempFolderCleanUp();
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void createScreenShot() { 
 		ScreenShotHandler screenShotHandler = new ScreenShotHandler();
-		boolean status = screenShotHandler.takeScreenShot();
+		boolean status = screenShotHandler.takeScreenShot(screenShotIndex);
 		
 		if(status) {
-			setScreenShotIndex(screenShotIndex);
-	
+			LOGGER.info("ScreenShot with index : " + screenShotIndex + " saved successfully");
+			setScreenShotIndex(screenShotIndex);	
 		}
 	}
 
