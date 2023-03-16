@@ -7,8 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import java.io.File;
 import java.io.IOException;
 
-import java.awt.Toolkit;
-
 public class Utilities {
 	
 	private static Logger LOGGER = LogManager.getLogger(Utilities.class);

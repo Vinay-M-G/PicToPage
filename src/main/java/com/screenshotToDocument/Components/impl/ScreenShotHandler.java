@@ -15,7 +15,7 @@ public class ScreenShotHandler {
 		Utilities utility = new Utilities();
 		
 		try {
-			String path = utility.getFolderPath() + Integer.toString(index) + "." + utility.getImageFormat();
+			String path = createImageDynamicPath(index, utility);
 			Robot robot = new Robot();
 			
 			Rectangle resolution = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
@@ -31,5 +31,9 @@ public class ScreenShotHandler {
 		
 		
 		return true;
+	}
+
+	private String createImageDynamicPath(int index, Utilities utility){
+		return utility.getFolderPath() + Integer.toString(index) + "." + utility.getImageFormat();
 	}
 }
