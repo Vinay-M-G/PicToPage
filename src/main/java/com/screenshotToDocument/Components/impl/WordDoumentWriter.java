@@ -75,6 +75,7 @@ public class WordDoumentWriter implements DocumentWriter{
 			document.write(outputWordFile);
 			outputWordFile.close();
 			document.close();
+
 			LOGGER.info("Word File Saved Successfully");
 			
 		} catch (Exception e) {
