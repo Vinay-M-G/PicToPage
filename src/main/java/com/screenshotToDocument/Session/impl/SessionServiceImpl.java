@@ -11,7 +11,7 @@ import java.io.File;
 
 public class SessionServiceImpl implements SessionService {
 	
-	private static Logger LOGGER = LogManager.getLogger(SessionServiceImpl.class);
+	private static final Logger LOGGER = LogManager.getLogger(SessionServiceImpl.class);
 
 	public SessionServiceImpl(){
 

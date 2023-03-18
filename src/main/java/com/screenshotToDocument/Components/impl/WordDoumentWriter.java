@@ -5,10 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -22,7 +19,7 @@ import com.screenshotToDocument.Components.DocumentWriter;
 
 public class WordDoumentWriter implements DocumentWriter{
 	
-	private static Logger LOGGER = LogManager.getLogger(WordDoumentWriter.class);
+	private static final Logger LOGGER = LogManager.getLogger(WordDoumentWriter.class);
 	
 	private static final int IMAGE_TYPE = XWPFDocument.PICTURE_TYPE_PNG;
 	private static final int IMAGE_WIDTH = 480;
@@ -103,7 +100,7 @@ public class WordDoumentWriter implements DocumentWriter{
 
 
 		for(int index = 0; index < fileCount; index++){
-			imageAbsolutePaths.add(utility.getFolderPath() + Integer.toString(index) + "." + utility.getImageFormat());
+			imageAbsolutePaths.add(utility.getFolderPath() + index + "." + utility.getImageFormat());
 		}
 		
 		return imageAbsolutePaths;

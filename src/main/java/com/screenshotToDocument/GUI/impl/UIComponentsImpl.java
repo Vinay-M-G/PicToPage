@@ -20,12 +20,12 @@ import com.screenshotToDocument.GUI.UIComponents;
 
 public class UIComponentsImpl implements UIComponents{
 	
-	private static Logger LOGGER = LogManager.getLogger(UIComponentsImpl.class);
+	private static final Logger LOGGER = LogManager.getLogger(UIComponentsImpl.class);
 	
-	private static String START_SESSION = "Start Session";
-	private static String NEW_SESSION_TITLE = "Start";
-	private static String NEW_SCREENSHOT_WINDOW_TITLE = "CS";
-	private static String NEW_SAVE_WINDOW_TITLE = "Save Doc";
+	private static final String START_SESSION = "Start Session";
+	private static final String NEW_SESSION_TITLE = "Start";
+	private static final String NEW_SCREENSHOT_WINDOW_TITLE = "CS";
+	private static final String NEW_SAVE_WINDOW_TITLE = "Save Doc";
 	
 	PerformActionImpl performActionImpl = new PerformActionImpl();
 	JLabel screenShotIndexLable = new JLabel();

@@ -10,7 +10,7 @@ import com.screenshotToDocument.Components.impl.WordDoumentWriter;
 
 public class PerformActionImpl implements PerformAction{
 	
-	private static Logger LOGGER = LogManager.getLogger(PerformActionImpl.class);
+	private static final Logger LOGGER = LogManager.getLogger(PerformActionImpl.class);
 	
 	private int screenShotIndex = 0;
 	
