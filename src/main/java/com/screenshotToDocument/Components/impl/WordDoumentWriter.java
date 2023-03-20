@@ -5,7 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -86,15 +89,21 @@ public class WordDoumentWriter implements DocumentWriter{
 	}
 	
 	private List<String> getListOfimageFiles(){
-		
+		int fileCount = 0;
+
 		List<String> imageAbsolutePaths = new ArrayList<String>();
 		Utilities utility = new Utilities();
 		String imageFolderPath = utility.getFolderPath();
 		
 		File imageFolder = new File(imageFolderPath);
-		for(String element : imageFolder.list()) {
 
-			imageAbsolutePaths.add(imageFolderPath + element);
+		if(imageFolder.list().length != 0){
+			fileCount  = imageFolder.list().length;
+		}
+
+
+		for(int index = 0; index < fileCount; index++){
+			imageAbsolutePaths.add(utility.getFolderPath() + Integer.toString(index) + "." + utility.getImageFormat());
 		}
 		
 		return imageAbsolutePaths;
