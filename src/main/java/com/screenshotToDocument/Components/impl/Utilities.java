@@ -9,11 +9,11 @@ import java.io.IOException;
 
 public class Utilities {
 	
-	private static Logger LOGGER = LogManager.getLogger(Utilities.class);
+	private static final Logger LOGGER = LogManager.getLogger(Utilities.class);
 	
 	private static final String tempFilePath = "C://Temp execution//TempImage//";
 	private static final String imageFormat = "png";
-	private static final String resultsFolder = "C://Temp execution//";
+	private static final String resultsFolder = "C://Temp execution//Results//";
 	
 	public String getFolderPath() {
 		return tempFilePath;
