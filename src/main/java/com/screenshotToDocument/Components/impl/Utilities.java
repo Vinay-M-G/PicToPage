@@ -3,6 +3,7 @@ package com.screenshotToDocument.Components.impl;
 import org.apache.logging.log4j.Logger;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <bean id="utility" class="com.screenshotToDocument.Components.impl.Utilities">
+    </bean>
+
+    <bean id="screenShotHandler" class="com.screenshotToDocument.Components.impl.ScreenShotHandler">
+    </bean>
+
+    <bean id="performActionImpl" class="com.screenshotToDocument.Activity.impl.PerformActionImpl">
+    </bean>
+
+    <bean id="uiComponents" class="com.screenshotToDocument.GUI.impl.UIComponentsImpl">
+    </bean>
+
+    <bean id="sessionServiceImpl" class="com.screenshotToDocument.Session.impl.SessionServiceImpl">
+    </bean>
+
+    <bean id="wordDocumentWriter" class="com.screenshotToDocument.Components.impl.WordDoumentWriter">
+    </bean>
+
+</beans>

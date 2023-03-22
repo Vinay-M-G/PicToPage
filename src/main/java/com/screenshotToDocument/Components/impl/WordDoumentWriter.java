@@ -16,6 +16,8 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 import com.screenshotToDocument.Components.DocumentWriter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 public class WordDoumentWriter implements DocumentWriter{
 	
@@ -28,9 +30,10 @@ public class WordDoumentWriter implements DocumentWriter{
 	private XWPFDocument document;
 	private FileOutputStream outputWordFile; 
 	
-	
-	public WordDoumentWriter(String fileName) throws FileNotFoundException {
-		 Utilities utility = new Utilities();
+	@Autowired
+	Utilities utility;
+
+	public void initialise(String fileName) throws FileNotFoundException {
 		 XWPFDocument document = new XWPFDocument();
 		 
 		 String documentPath = utility.getResultsFolderPath() + fileName + ".docx";
@@ -45,7 +48,7 @@ public class WordDoumentWriter implements DocumentWriter{
 	@Override
 	public void writeImagesFromFolder(){
 		
-		List<String> imagePathList = getListOfimageFiles();
+		List<String> imagePathList = getListOfImageFiles();
 		
 		imagePathList.stream().forEach( element -> {
 			
@@ -86,11 +89,10 @@ public class WordDoumentWriter implements DocumentWriter{
 		
 	}
 	
-	private List<String> getListOfimageFiles(){
+	private List<String> getListOfImageFiles(){
 		int fileCount = 0;
 
 		List<String> imageAbsolutePaths = new ArrayList<String>();
-		Utilities utility = new Utilities();
 		String imageFolderPath = utility.getFolderPath();
 		
 		File imageFolder = new File(imageFolderPath);

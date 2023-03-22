@@ -17,6 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import com.screenshotToDocument.Activity.impl.PerformActionImpl;
 import com.screenshotToDocument.GUI.BaseFrame;
 import com.screenshotToDocument.GUI.UIComponents;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UIComponentsImpl implements UIComponents{
 	
@@ -26,9 +27,10 @@ public class UIComponentsImpl implements UIComponents{
 	private static final String NEW_SESSION_TITLE = "Start";
 	private static final String NEW_SCREENSHOT_WINDOW_TITLE = "CS";
 	private static final String NEW_SAVE_WINDOW_TITLE = "Save Doc";
-	
-	PerformActionImpl performActionImpl = new PerformActionImpl();
-	JLabel screenShotIndexLable = new JLabel();
+
+	@Autowired
+	PerformActionImpl performActionImpl;
+	JLabel screenShotIndexLabel = new JLabel();
 	JTextField fileName = new JTextField("" , 30);
 	
 	private ActionListener startScreenShotProcess(final JFrame frame) {
@@ -37,8 +39,7 @@ public class UIComponentsImpl implements UIComponents{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				UIComponentsImpl uiComponentsImpl = new UIComponentsImpl();
-				uiComponentsImpl.renderScreenShotWindow();	
+				renderScreenShotWindow();
 			}
 			
 		};
@@ -51,8 +52,7 @@ public class UIComponentsImpl implements UIComponents{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				UIComponentsImpl uiComponentsImpl = new UIComponentsImpl();
-				uiComponentsImpl.renderSaveWindow();
+				renderSaveWindow();
 			}
 
 		};
@@ -91,10 +91,9 @@ public class UIComponentsImpl implements UIComponents{
 				String documentName = fileName.getText();
 				
 				if(documentName.length() > 0 && documentName != null) {
-					performActionImpl.saveDocument(fileName.getText());
+					performActionImpl.saveDocument(documentName);
 					frame.dispose();
-					UIComponentsImpl uiComponentsImpl = new UIComponentsImpl();
-					uiComponentsImpl.renderStartWindow();
+					renderStartWindow();
 				}else {
 					
 					LOGGER.warn("File Name not provided !!!");
@@ -114,7 +113,7 @@ public class UIComponentsImpl implements UIComponents{
 				
 				performActionImpl.createScreenShot();
 				String index = performActionImpl.getScreenShotIndex();
-				screenShotIndexLable.setText(" " + index + " ");
+				screenShotIndexLabel.setText(" " + index + " ");
 				
 			}
 
@@ -151,9 +150,9 @@ public class UIComponentsImpl implements UIComponents{
 		captureSSButton.setBounds(0, 10, 20, 10);
 		captureSSButton.addActionListener(initiateScreenShot(frame));
 		
-		screenShotIndexLable.setText(" " + performActionImpl.getScreenShotIndex() + " ");
-		screenShotIndexLable.setBounds(0, 35, 20, 10);
-		screenShotIndexLable.setFont(new Font("Serif", Font.BOLD, 20));
+		screenShotIndexLabel.setText(" " + performActionImpl.getScreenShotIndex() + " ");
+		screenShotIndexLabel.setBounds(0, 35, 20, 10);
+		screenShotIndexLabel.setFont(new Font("Serif", Font.BOLD, 20));
 		
 		JButton endSSSession = new JButton();
 		endSSSession.setText("End");
@@ -164,7 +163,7 @@ public class UIComponentsImpl implements UIComponents{
 		panel.setLayout(new FlowLayout());
 		
 		panel.add(captureSSButton);
-		panel.add(screenShotIndexLable);
+		panel.add(screenShotIndexLabel);
 		panel.add(endSSSession);
 		
 		frame.add(panel);
