@@ -8,7 +8,6 @@ import com.screenshotToDocument.Components.impl.ScreenShotHandler;
 import com.screenshotToDocument.Components.impl.Utilities;
 import com.screenshotToDocument.Components.impl.WordDoumentWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 public class PerformActionImpl implements PerformAction{
 	

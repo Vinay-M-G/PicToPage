@@ -17,7 +17,6 @@ import org.apache.logging.log4j.LogManager;
 
 import com.screenshotToDocument.Components.DocumentWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 public class WordDoumentWriter implements DocumentWriter{
 	

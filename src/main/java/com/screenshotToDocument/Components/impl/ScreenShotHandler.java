@@ -1,7 +1,6 @@
 package com.screenshotToDocument.Components.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.awt.Rectangle;
 import java.awt.Robot;
