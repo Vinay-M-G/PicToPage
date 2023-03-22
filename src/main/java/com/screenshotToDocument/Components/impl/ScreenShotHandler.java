@@ -1,5 +1,7 @@
 package com.screenshotToDocument.Components.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -9,10 +11,10 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 public class ScreenShotHandler {
-	
+
+	@Autowired
+	Utilities utility;
 	public boolean takeScreenShot(int index) {
-		
-		Utilities utility = new Utilities();
 		
 		try {
 			String path = createImageDynamicPath(index, utility);

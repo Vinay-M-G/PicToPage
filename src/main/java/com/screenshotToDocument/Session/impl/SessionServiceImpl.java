@@ -6,16 +6,20 @@ import org.apache.logging.log4j.LogManager;
 
 import com.screenshotToDocument.GUI.impl.UIComponentsImpl;
 import com.screenshotToDocument.Session.SessionService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 
 public class SessionServiceImpl implements SessionService {
 	
 	private static final Logger LOGGER = LogManager.getLogger(SessionServiceImpl.class);
+	@Autowired
+	Utilities utility;
+	@Autowired
+	UIComponentsImpl uiComponents;
 
-	public SessionServiceImpl(){
-
-		Utilities utility = new Utilities();
+	@Override
+	public void startSession() {
 
 		File documentFolder = new File(utility.getResultsFolderPath());
 		File imageFolder = new File(utility.getFolderPath());
@@ -36,11 +40,6 @@ public class SessionServiceImpl implements SessionService {
 			}
 		}
 
-	}
-	@Override
-	public void startSession() {
-		
-		UIComponentsImpl uiComponents = new UIComponentsImpl();
 		uiComponents.renderStartWindow();
 		LOGGER.info("Session Started Successfully");
 	}
