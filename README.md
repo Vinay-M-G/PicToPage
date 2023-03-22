@@ -1,14 +1,16 @@
 # PicToPage
 
-A Java based Standalone Application to help Testers / developers to capture screenshots and convert to a desired document
+A Java based Standalone Application to help Testers / developers to capture screenshots and convert to a desired document.
+
+Spring Framework is utilized to improve performance by implementing the concepts of Dependency Injection and Inversion of Control.  
 
 ## Benefits
 
-  - As End User No Need to do Take ScreenShot and Paste it to Document Every Time
+  - As End User No Need to do Take ScreenShot and Paste it to Document Every Time.
   
   - Supports Dual Formats (PDF and Word) (In Progress)
   
-  - StandAlone Application and can be customised to end user needs 
+  - StandAlone Application which can be customised to end user needs.
   
 
 ## System Requirements
